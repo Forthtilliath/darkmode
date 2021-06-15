@@ -1,44 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
 import "../styles/DarkMode.css";
 
-const DarkMode = () => {
-  let clickedClass = "clicked";
-  const body = document.body;
-  const lightTheme = "light";
-  const darkTheme = "dark";
-  let theme;
-
-  if (localStorage) {
-    theme = localStorage.getItem("theme");
+class DarkMode extends Component {
+  constructor() {
+    super();
+    this.lightTheme = "light";
+    this.darkTheme = "dark";
+    this.theme = localStorage.getItem("theme") ?? "light";
+    document.body.classList.add(this.theme);
+    this.state = {
+      text: this.theme === this.lightTheme ? "Sun" : "Moon",
+    };
   }
 
-  if (theme === lightTheme || theme === darkTheme) {
-    body.classList.add(theme);
-  } else {
-    body.classList.add(lightTheme);
-  }
-
-  const switchTheme = (e) => {
+  switchTheme = (e) => {
+    let { lightTheme, darkTheme, theme } = this;
     if (theme === darkTheme) {
-      body.classList.replace(darkTheme, lightTheme);
-      e.target.classList.remove(clickedClass);
+      document.body.classList.replace(darkTheme, lightTheme);
       localStorage.setItem("theme", "light");
-      theme = lightTheme;
+      this.theme = lightTheme;
     } else {
-      body.classList.replace(lightTheme, darkTheme);
-      e.target.classList.add(clickedClass);
+      document.body.classList.replace(lightTheme, darkTheme);
       localStorage.setItem("theme", "dark");
-      theme = darkTheme;
+      this.theme = darkTheme;
     }
+    this.setState({
+      text: this.theme === this.lightTheme ? "Sun" : "Moon",
+    });
   };
 
-  return (
-    <button
-      className={theme === "dark" ? clickedClass : ""}
-      id="darkMode"
-      onClick={(e) => switchTheme(e)}
-    ></button>
-  );
-};
+  render() {
+    return (
+      <button id="darkMode" onClick={(e) => this.switchTheme(e)}>
+        {this.state.text}
+      </button>
+    );
+  }
+}
 
 export default DarkMode;
