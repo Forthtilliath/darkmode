@@ -1,11 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/DarkMode.css";
 
+const LIGHT = "light";
+const DARK = "dark";
+
 export function DarkMode() {
-  const lightTheme = "light";
-  const darkTheme = "dark";
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
-  const [text, setText] = useState(theme === lightTheme ? "Sun" : "Moon");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? LIGHT);
 
   useEffect(() => {
     document.body.classList.add(theme);
@@ -15,22 +15,19 @@ export function DarkMode() {
   }, [theme]);
 
   const switchTheme = () => {
-    if (theme === darkTheme) {
-      document.body.classList.replace(darkTheme, lightTheme);
-      localStorage.setItem("theme", "light");
-      setTheme(lightTheme);
+    if (theme === DARK) {
+      document.body.classList.replace(DARK, LIGHT);
+      localStorage.setItem("theme", LIGHT);
+      setTheme(LIGHT);
     } else {
-      document.body.classList.replace(lightTheme, darkTheme);
-      localStorage.setItem("theme", "dark");
-      setTheme(darkTheme);
+      document.body.classList.replace(LIGHT, DARK);
+      localStorage.setItem("theme", DARK);
+      setTheme(DARK);
     }
-    setText(theme === lightTheme ? "Sun" : "Moon");
   };
 
   return (
-    <button id="darkMode" onClick={switchTheme}>
-      {text}
-    </button>
+    <button id="darkMode" onClick={switchTheme} />
   );
 }
 
