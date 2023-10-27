@@ -18,14 +18,14 @@ body.light {
   --background-color: var(--white);
   --text-color: var(--blue);
   --font-weight: 400;
-  --image: url("../day.jpg");
+  --image: url("../assets/img/day.jpg");
 }
 
 body.dark {
   --background-color: var(--blue);
   --text-color: var(--white);
   --font-weight: 500;
-  --image: url("../night.jpg");
+  --image: url("../assets/img/night.jpg");
 }
 
 nav {
