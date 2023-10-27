@@ -1,4 +1,3 @@
-import React from "react";
 import "./styles/App.css";
 import DarkMode from "./components/DarkMode";
 
@@ -6,10 +5,10 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <a href="/">Home</a>
-        <a href="/">Projects</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
+        <a href="#">Home</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
         <DarkMode />
       </nav>
       <h1>Hello World</h1>
